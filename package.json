@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "electron": "^21.2.2",
+    "electron-reload": "^2.0.0-alpha.1",
+    "react": "^18.2.0",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "amstrup",
+  "description": "modular or some shit",
+  "main": "main.js"
+}
