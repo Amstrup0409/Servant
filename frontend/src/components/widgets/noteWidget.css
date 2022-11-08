@@ -1,0 +1,14 @@
+#NoteContainerCell {
+    height: 400;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: groove;
+    color: lightcyan;
+    width: 600px;
+}
+
+#NoteContainer {
+    height: 400px;
+    text-align: center;
+}
