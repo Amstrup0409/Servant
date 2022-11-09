@@ -1,14 +1,24 @@
-#NoteContainerCell {
-    height: 400;
-    border-width: 1px;
-    border-radius: 10px;
-    border-color: black;
-    border-style: groove;
-    color: lightcyan;
-    width: 600px;
-}
-
 #NoteContainer {
     height: 400px;
-    text-align: center;
+}
+
+.NoteContainerCell {
+    margin: 4px 4px 2px 4px;
+    border-style: inset;
+    border-radius: 6px;
+    min-height: 15%;
+}
+
+.NoteContainerCell_Indicator {
+    height: 100%;
+    width: 2%;
+    float: left;
+    background-color: red;
+}
+
+.NoteContainerCell_Text {
+    margin: 6px 6px auto;
+    float: left;
+    color: lightblue;
+    height: 40%;
 }

@@ -1,0 +1,38 @@
+#Board {
+    padding-top: 11vh;
+    height: 100%;
+    padding: 6px auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    row-gap: 10;
+    padding-left: 20vh;
+}
+
+.BoardEntryWrapper {
+
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 8px;
+    aspect-ratio: 1;
+}
+
+.BoardEntryTitle {
+    height: 10%;
+    color: black;
+    background-color: lightgray;
+    border-bottom-color: black;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.BoardEntryElement {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 340px;
+    border-radius: inherit;
+}

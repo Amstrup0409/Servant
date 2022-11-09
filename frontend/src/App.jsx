@@ -1,10 +1,13 @@
 import './App.css';
-import NoteWidget from './components/widgets/noteWidget';
+import Board from './components/board/board'
+import NavBarTop from './components/navbar/top/navbar_top'
+import NavBarSide from './components/navbar/side/navbar_side'
 
 function App() {
     return (
         <div id="App">
-            <NoteWidget />
+            <NavBarTop />
+            <Board />
         </div>
     )
 }
