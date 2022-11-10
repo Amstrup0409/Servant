@@ -1,12 +1,13 @@
 #NoteContainer {
-    height: 400px;
+    height: inherit;
 }
 
 .NoteContainerCell {
-    margin: 4px 4px 2px 4px;
+    margin: 20px 20px 18px 20px;
     border-style: inset;
     border-radius: 6px;
-    min-height: 15%;
+    min-height: 30px;
+    background-color: rgb(39, 62, 82);
 }
 
 .NoteContainerCell_Indicator {

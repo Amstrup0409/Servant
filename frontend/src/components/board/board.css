@@ -1,26 +1,60 @@
 #Board {
-    padding-top: 11vh;
     height: 100%;
-    padding: 6px auto;
-
+    padding: 6vh 40px 40px 10vw;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    row-gap: 10;
-    padding-left: 20vh;
+    grid-auto-flow: dense;
+    gap: 20px 20px;
+    grid-template-columns: repeat(6, 9.6cm);
+    width: 90vw;
+    background-color: rgb(66, 66, 61);
 }
 
 .BoardEntryWrapper {
-
     border-color: white;
     border-width: 1px;
     border-style: solid;
-    border-radius: 8px;
+    background-color: darkslategrey;
+    border-bottom-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+
+.Entry1 {
+    width: 9.6cm;
+    height: 9.6cm;
+    grid-column: span 1;
+    grid-row: span 1;
+    aspect-ratio: 1;
+
+}
+
+.Entry2 {
+
+    grid-column: span 2;
+    grid-row: span 1;
+
+    height: 9.6cm;
+    aspect-ratio: 2;
+
+
+}
+
+.Entry3 {
+    grid-row: span 2;
+    grid-column: span 1;
+    width: 9.6cm;
+    aspect-ratio: 0.7;
+}
+
+.Entry4 {
+    width: 19.7cm;
+    grid-row: span 2;
+    grid-column: span 2;
     aspect-ratio: 1;
 }
 
 .BoardEntryTitle {
-    height: 10%;
+    height: 4vh;
     color: black;
     background-color: lightgray;
     border-bottom-color: black;
@@ -31,8 +65,8 @@
 }
 
 .BoardEntryElement {
+    overflow-x: none;
     overflow-y: auto;
-    overflow-x: hidden;
-    height: 340px;
+    height: 92%;
     border-radius: inherit;
 }

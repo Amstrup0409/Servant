@@ -2,7 +2,7 @@
 const STYLE = {
     "color": "black",
     "text-align": "center",
-    "height": "7vh",
+    "height": "4vh",
     "top": 0,
     "right": 0,
     "left": 0,

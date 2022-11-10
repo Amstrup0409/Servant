@@ -2,3 +2,9 @@
     height: 100%;
     text-align: center;
 }
+
+[draggable=true] {
+    cursor: move;
+    opacity: 1;
+    background-color: aqua;
+}
