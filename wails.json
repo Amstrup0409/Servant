@@ -1,6 +1,6 @@
 {
-  "name": "servant",
-  "outputfilename": "servant",
+  "name": "Servant",
+  "outputfilename": "Servant",
   "frontend:install": "npm install",
   "frontend:build": "npm run build",
   "frontend:dev:watcher": "npm run dev",

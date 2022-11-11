@@ -1,154 +1,50 @@
 import './board.css'
-import '../widgets/noteWidget'
-import NoteWidget from '../widgets/noteWidget'
-import GridWidget from '../widgets/gridWidget'
+import NoteWidget from '../widgets/notes/noteWidget'
+import React, { Component } from 'react'
 
-const SIZE = 60
-
-
-
-function determineBoard(gridWidth, entries) {
-
-    function makeNewArrayEntry() {
-        return Array.apply(null, Array(gridWidth)).map(function () { })
+class BoardEntryWrapper extends Component {
+    constructor(props) {
+        super(props)
+        this.title = props.title
+        this.elementType = props.element
+        this.params = props.params
+        this.size = props.size
     }
 
-    var grid = [makeNewArrayEntry()]
-    function findFreeOne() {
-        for (let i = 0; i < grid.length; i++) {
-            for (let j = 0; j < gridWidth; j++) {
-                if (!grid[i][j]) {
-                    grid[i][j] = "one"
-                    return
-                }
-            }
-        }
-        grid.push(makeNewArrayEntry())
+    render() {
+        console.log(this.elementType)
+        return (
+            <div className={`BoardEntryWrapper Entry${this.size}`} draggable="true" >
+                <div className='BoardEntryElement'>
+                    <this.elementType size={this.size} />
+                </div>
+            </div >
+        )
     }
-
-    function findFreeTwo() {
-        for (let i = 0; i < grid.length; i++) {
-            for (let j = 0; j < gridWidth - 1; j++) {
-                if (!grid[i][j] && !grid[i][j + 1]) {
-                    grid[i][j] = "two"
-                    grid[i][j + 1] = "two"
-                    return
-                }
-            }
-        }
-        grid.push(makeNewArrayEntry())
-        grid[grid.length - 1][0] = "two"
-        grid[grid.length - 1][1] = "two"
-    }
-
-    function findFreeThree() {
-        if (grid.length < 2) {
-            grid.push(makeNewArrayEntry())
-        }
-        for (let i = 0; i < grid.length - 1; i++) {
-            for (let j = 0; j < gridWidth; j++) {
-                if (!grid[i][j] && !grid[i + 1][j]) {
-                    grid[i][j] = "three"
-                    grid[i + 1][j] = "three"
-                    return
-                }
-            }
-        }
-        grid.push(makeNewArrayEntry())
-        let formerLength = grid.length - 1
-        for (let i = 0; i < gridWidth; i++) {
-            if (!grid[formerLength]) {
-                grid[formerLength][i] = "three"
-                grid[formerLength + 1][i] = "three"
-                return
-            }
-        }
-        grid[grid.length - 2][0] = "three"
-        grid[grid.length - 1][0] = "three"
-    }
-
-    function findFreeFour() {
-
-    }
-
-
-
-    entries.forEach(entry => {
-        let s = entry.size
-
-        switch (true) {
-            case (s == 1):
-                findFreeOne()
-                break;
-            case (s == 2):
-                findFreeTwo()
-                break;
-            case (s == 3):
-                findFreeThree()
-                break;
-            case (s == 4):
-                findFreeFour()
-                break;
-            default:
-                console.log("Found nutting")
-
-        }
-    }
-    )
-    let output = grid.flatMap(r => {
-        let i = ["\""]
-        i.push(...r)
-        i.push("\"\"")
-        return i
-
-    })
-
-    return output.map(v => {
-        if (!v) {
-            return "one"
-        }
-        return v
-    }).join(' ')
 }
 
-
-function BoardEntryWrapper({ title, size, element, params }) {
-    return (
-        <div className={`BoardEntryWrapper Entry${size}`} draggable="true" >
-            <div className="BoardEntryTitle">
-                {title}
-            </div>
-            <div className='BoardEntryElement'>
-                {element(params)}
-            </div>
-        </div >
-    )
-}
-
-
-function Board() {
-    const firstEntry = { title: "My notes", element: NoteWidget, params: null, size: 4 }
-    function populateEntries(amount) {
-        let myEntries = [firstEntry]
-        myEntries.push({ title: "My grid", element: GridWidget, params: null, size: 2 })
-
-        for (let i = 0; i < amount; i++) {
-            let size = Math.floor(Math.random() * 4) + 1
-
-            myEntries.push({ title: `My ${i + 1}. elementzzzz`, element: () => { return (<a>Heeeeeeeeej Krisser</a>) }, params: `${i}`, size: size })
+class Board extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            elements: []
         }
-        return myEntries
     }
 
-    const entries = populateEntries(25)
-
-    return (
-        <div id="Board" >
-            {entries.map(ele => {
-                return BoardEntryWrapper(ele)
-            })}
-        </div>
-    )
+    firstEntry = { title: "My notes", element: NoteWidget, params: null, size: 1 }
+    secondEntry = { title: "My notes", element: NoteWidget, params: null, size: 2 }
+    thirdEntry = { title: "My notes", element: NoteWidget, params: null, size: 3 }
+    fourthEntry = { title: "My notes", element: NoteWidget, params: null, size: 4 }
+    render() {
+        return (
+            <div id="Board" >
+                <BoardEntryWrapper element={this.firstEntry.element} size={this.firstEntry.size} params={this.firstEntry.params} />
+                <BoardEntryWrapper element={this.secondEntry.element} size={this.secondEntry.size} params={this.secondEntry.params} />
+                <BoardEntryWrapper element={this.thirdEntry.element} size={this.thirdEntry.size} params={this.thirdEntry.params} />
+                <BoardEntryWrapper element={this.fourthEntry.element} size={this.fourthEntry.size} params={this.fourthEntry.params} />
+            </div>
+        )
+    }
 }
 
 export default Board
