@@ -1,7 +1,8 @@
 import "./noteWidget.css"
 import React from 'react'
 // import { MakeMyUser } from "../../../wailsjs/go/main/App"
-import { GetNotes, CreateNote } from "../../../../wailsjs/go/notewidget/NoteUser"
+import { GetNotes, CreateNote, Subscribe } from "../../../../wailsjs/go/notewidget/NoteUser"
+import { EventsOn } from "../../../../wailsjs/runtime"
 
 
 function NoteEditWindow({ Title, Date, Body }) {
@@ -15,16 +16,20 @@ function NoteEditWindow({ Title, Date, Body }) {
 function NoteCell({ Title, Date, Body }) {
     return (
         <div className="NoteContainerCell">
-            <div className="NoteContainerCell_Indicator" />
-            <div className="NoteContainerCell_Title">
-                {Title}
-            </div>
-            <div className="NoteContainerCell_Date">
-                {Date}
-            </div>
-            <div className="NoteContainerCell_Body">
-                {Body}
-            </div>
+            <span>
+                <div className="NoteContainerCell_Indicator" />
+                <div className="NoteContainerCell_Texts">
+                    <div className="NoteContainerCell_Title">
+                        {Title}
+                    </div>
+                    <div className="NoteContainerCell_Body">
+                        {Body}
+                    </div>
+                    <div className="NoteContainerCell_Date">
+                        {Date}
+                    </div>
+                </div>
+            </span>
         </div>
     )
 }
@@ -48,8 +53,6 @@ function NoteFunctionBar({ addOnClick }) {
 }
 
 function RenderBody({ size, notes }) {
-    console.log("Size: ", size)
-    console.log("My notes: ", notes)
     let body = (<div className="NoteCellContainer_CellList">
         {notes.map(note => NoteCell(note))}
     </div>
@@ -57,18 +60,14 @@ function RenderBody({ size, notes }) {
     switch (true) {
         case (size == 1):
         case (size == 3):
-            console.log("Returning small body")
             return body
-
         default:
-            console.log("Returning large body")
             return (
-                <div className="NoteCellContainer">
-                    <div className="NoteContainer_Limited">
-                        {body}
-                        <div className="NoteContainer_Edit">
-                            <NoteEditWindow />
-                        </div>
+
+                <div className="NoteContainer_Limited">
+                    {body}
+                    <div className="NoteContainer_Edit">
+                        <NoteEditWindow />
                     </div>
                 </div>
             )
@@ -77,14 +76,10 @@ function RenderBody({ size, notes }) {
 
 class NoteWidget extends React.Component {
     async createNewNote() {
-        let note = await CreateNote(`A new note number ${this.state.notes.length}`, "And this is just a body")
-        this.setState((prevState) => ({
-            notes: [...prevState.notes, note]
-        }))
+        await CreateNote(`A new note number ${this.state.notes.length}`, "And this is just a body")
     }
 
     async GetAllNotes() {
-        console.log("Getting all notes")
         let res = await GetNotes()
         this.setState({
             notes:
@@ -100,6 +95,13 @@ class NoteWidget extends React.Component {
         }
 
         this.createNewNote = this.createNewNote.bind(this)
+        this.getAllNotes = this.GetAllNotes.bind(this)
+
+        EventsOn("new_note", (params) => {
+            this.setState((prevState) => ({
+                notes: [...prevState.notes, params]
+            }))
+        })
     }
 
     componentDidMount() {
@@ -109,7 +111,7 @@ class NoteWidget extends React.Component {
     render() {
         return (
             <div className="NoteContainer">
-                <NoteFunctionBar addOnClick={this.createNewNote} />
+                <NoteFunctionBar addOnClick={this.createNewNote} refreshOnClick={this.getAllNotes} />
                 {RenderBody(this.state)}
             </div>
         )

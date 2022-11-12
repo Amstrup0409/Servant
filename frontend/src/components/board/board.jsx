@@ -12,9 +12,8 @@ class BoardEntryWrapper extends Component {
     }
 
     render() {
-        console.log(this.elementType)
         return (
-            <div className={`BoardEntryWrapper Entry${this.size}`} draggable="true" >
+            <div className={`BoardEntryWrapper Entry${this.size}`}  >
                 <div className='BoardEntryElement'>
                     <this.elementType size={this.size} />
                 </div>
@@ -40,8 +39,8 @@ class Board extends Component {
             <div id="Board" >
                 <BoardEntryWrapper element={this.firstEntry.element} size={this.firstEntry.size} params={this.firstEntry.params} />
                 <BoardEntryWrapper element={this.secondEntry.element} size={this.secondEntry.size} params={this.secondEntry.params} />
-                <BoardEntryWrapper element={this.thirdEntry.element} size={this.thirdEntry.size} params={this.thirdEntry.params} />
                 <BoardEntryWrapper element={this.fourthEntry.element} size={this.fourthEntry.size} params={this.fourthEntry.params} />
+                <BoardEntryWrapper element={this.thirdEntry.element} size={this.thirdEntry.size} params={this.thirdEntry.params} />
             </div>
         )
     }

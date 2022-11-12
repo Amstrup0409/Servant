@@ -12,6 +12,21 @@ body {
         sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: rgb(34, 34, 34);
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 10px 0 6px rgba(0, 26, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(150, 150, 150, 0.637);
+    outline: 0 solid slategrey;
+    border-radius: 3px;
+}
+
 @font-face {
     font-family: "Nunito";
     font-style: normal;
@@ -23,4 +38,5 @@ body {
 #App {
     height: 100vh;
     text-align: center;
+    overflow: hidden;
 }

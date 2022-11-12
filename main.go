@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"servant/widgets/notewidget"
 
-	"github.com/wailsapp/wails/v2"
+	wails "github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 )
 
@@ -14,10 +14,10 @@ var assets embed.FS
 
 func main() {
 
-	myUser := notewidget.MakeNoteUser()
-
 	// Create an instance of the app structure
 	app := NewApp()
+
+	myUser := notewidget.MakeNoteUser(&app.ctx)
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -43,5 +43,6 @@ func main() {
 // }
 
 func (a *App) MakeMyUser(input string) string {
+
 	return fmt.Sprintf("You have input: %s... Thanks.", input)
 }

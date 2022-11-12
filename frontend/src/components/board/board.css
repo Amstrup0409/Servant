@@ -4,10 +4,12 @@
     display: grid;
     grid-auto-flow: dense;
     gap: 20px 20px;
+    grid-auto-rows: 9.6cm;
     grid-auto-columns: 9.6cm;
     grid-template-columns: repeat(auto-fit, minmax(0, 9.6cm));
     width: 86%;
     background-color: rgb(66, 66, 61);
+    overflow-y: auto;
 }
 
 .BoardEntryWrapper {
@@ -21,24 +23,19 @@
     /* overflow: unset; */
 }
 
-
 .Entry1 {
     width: 9.6cm;
-    height: 9.6cm;
     grid-column: span 1;
     grid-row: span 1;
     aspect-ratio: 1;
 }
 
-
 .Entry2 {
     grid-column: span 2;
     grid-row: span 1;
-
     height: 9.6cm;
     aspect-ratio: 2.05;
 }
-
 
 .Entry3 {
     grid-row: span 2;
@@ -58,5 +55,4 @@
     overflow-x: none;
     height: 100%;
     overflow-y: hidden;
-
 }

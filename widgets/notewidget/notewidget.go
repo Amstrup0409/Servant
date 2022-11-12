@@ -1,8 +1,11 @@
 package notewidget
 
 import (
+	"context"
 	"sync"
 	"time"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 type NoteObject struct {
@@ -20,27 +23,32 @@ func MakeNote(title, body string) NoteObject {
 }
 
 type NoteUser struct {
-	lock  sync.Mutex
-	Notes []NoteObject
+	lock        sync.Mutex
+	Notes       []NoteObject
+	NoteChannel chan NoteObject
+	Context     *context.Context
 }
 
-func MakeNoteUser() *NoteUser {
+func MakeNoteUser(ctx *context.Context) *NoteUser {
 	note1 := MakeNote("My first note", "This is my first note body")
 	note2 := MakeNote("My seconds note", "This is my second note body")
 	note3 := MakeNote("My third note", "This is my third note body")
 	noteUser := NoteUser{
-		Notes: []NoteObject{note1, note2, note3},
+		Notes:       []NoteObject{note1, note2, note3},
+		NoteChannel: make(chan NoteObject),
+		Context:     ctx,
 	}
 
 	return &noteUser
 }
 
-func (nu *NoteUser) CreateNote(title, body string) NoteObject {
+func (nu *NoteUser) CreateNote(title, body string) {
 	nu.lock.Lock()
 	defer nu.lock.Unlock()
 	newNote := MakeNote(title, body)
 	nu.Notes = append(nu.Notes, newNote)
-	return newNote
+	runtime.EventsEmit(*nu.Context, "new_note", newNote)
+	/* 	return newNote */
 }
 
 func (nu *NoteUser) startUpdate(index int) func(string, string) {
@@ -54,6 +62,10 @@ func (nu *NoteUser) GetNotes() []NoteObject {
 	nu.lock.Lock()
 	defer nu.lock.Unlock()
 	return nu.Notes
+}
+
+func (nu *NoteUser) Subscribe(handler func(note NoteObject)) {
+
 }
 
 // func (nu *NoteUser) updateNote(index int, title string, body string) {

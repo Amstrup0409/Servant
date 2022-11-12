@@ -9,3 +9,7 @@ export function CreateNote(arg1, arg2) {
 export function GetNotes() {
   return window['go']['notewidget']['NoteUser']['GetNotes']();
 }
+
+export function Subscribe(arg1) {
+  return window['go']['notewidget']['NoteUser']['Subscribe'](arg1);
+}
