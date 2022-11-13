@@ -1,6 +1,7 @@
 import './board.css'
 import NoteWidget from '../widgets/notes/noteWidget'
 import React, { Component } from 'react'
+import CalenderWidget from '../widgets/calender/calenderWidget'
 
 class BoardEntryWrapper extends Component {
     constructor(props) {
@@ -34,13 +35,22 @@ class Board extends Component {
     secondEntry = { title: "My notes", element: NoteWidget, params: null, size: 2 }
     thirdEntry = { title: "My notes", element: NoteWidget, params: null, size: 3 }
     fourthEntry = { title: "My notes", element: NoteWidget, params: null, size: 4 }
+
+    firstCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 1 }
+    secondCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 2 }
+    thirdCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 3 }
+    fourthCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 4 }
     render() {
         return (
             <div id="Board" >
-                <BoardEntryWrapper element={this.firstEntry.element} size={this.firstEntry.size} params={this.firstEntry.params} />
-                <BoardEntryWrapper element={this.secondEntry.element} size={this.secondEntry.size} params={this.secondEntry.params} />
-                <BoardEntryWrapper element={this.fourthEntry.element} size={this.fourthEntry.size} params={this.fourthEntry.params} />
-                <BoardEntryWrapper element={this.thirdEntry.element} size={this.thirdEntry.size} params={this.thirdEntry.params} />
+                <BoardEntryWrapper {...this.firstCalEntry} />
+                <BoardEntryWrapper {...this.secondCalEntry} />
+                <BoardEntryWrapper {...this.thirdCalEntry} />
+                <BoardEntryWrapper {...this.fourthCalEntry} />
+                <BoardEntryWrapper {...this.firstEntry} />
+                <BoardEntryWrapper {...this.secondEntry} />
+                <BoardEntryWrapper {...this.thirdEntry} />
+                <BoardEntryWrapper {...this.fourthEntry} />
             </div>
         )
     }
