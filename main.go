@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	"fmt"
+	calenderwidget "servant/widgets/calenderWidget"
 	"servant/widgets/notewidget"
 
 	wails "github.com/wailsapp/wails/v2"
@@ -17,7 +18,9 @@ func main() {
 	// Create an instance of the app structure
 	app := NewApp()
 
-	myUser := notewidget.MakeNoteUser(&app.ctx)
+	noteUser := notewidget.MakeNoteUser(&app.ctx)
+	calenderUser := calenderwidget.MakeCalenderUser(&app.ctx)
+	noteUser2 := notewidget.MakeNoteUser(&app.ctx)
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -29,7 +32,9 @@ func main() {
 		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
-			myUser,
+			noteUser,
+			calenderUser,
+			noteUser2,
 		},
 	})
 

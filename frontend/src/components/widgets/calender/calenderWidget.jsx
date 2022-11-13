@@ -58,13 +58,18 @@ class CalenderWidget extends Component {
         }
     }
 
+
+
     render() {
         return (
             <div className="CalenderContainer">
-                <CalenderDateGrid />
+                <iframe
+                    src="https://calendar.google.com/calendar/ical/christian.amstrup.petersen%40gmail.com/private-9b01a1756abc5accdcc30b5c28d013e9/basic.ics"
+                    style={{ "border": "solid 1px #777", width: "100%", height: "100%", scrolling: "no" }}>
+                </iframe>
             </div>
         )
     }
 }
-
+// "https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Europe%2FCopenhagen&src=Y2hyaXN0aWFuLmFtc3RydXAucGV0ZXJzZW5AZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZGEuZGFuaXNoI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%230B8043"
 export default CalenderWidget

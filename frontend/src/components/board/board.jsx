@@ -35,18 +35,18 @@ class Board extends Component {
     secondEntry = { title: "My notes", element: NoteWidget, params: null, size: 2 }
     thirdEntry = { title: "My notes", element: NoteWidget, params: null, size: 3 }
     fourthEntry = { title: "My notes", element: NoteWidget, params: null, size: 4 }
-
-    firstCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 1 }
-    secondCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 2 }
-    thirdCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 3 }
-    fourthCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 4 }
+    /* 
+        firstCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 1 }
+        secondCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 2 }
+        thirdCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 3 }
+        fourthCalEntry = { title: "My notes", element: CalenderWidget, params: null, size: 4 } */
     render() {
         return (
             <div id="Board" >
-                <BoardEntryWrapper {...this.firstCalEntry} />
+                {/*                <BoardEntryWrapper {...this.firstCalEntry} />
                 <BoardEntryWrapper {...this.secondCalEntry} />
                 <BoardEntryWrapper {...this.thirdCalEntry} />
-                <BoardEntryWrapper {...this.fourthCalEntry} />
+                <BoardEntryWrapper {...this.fourthCalEntry} /> */}
                 <BoardEntryWrapper {...this.firstEntry} />
                 <BoardEntryWrapper {...this.secondEntry} />
                 <BoardEntryWrapper {...this.thirdEntry} />

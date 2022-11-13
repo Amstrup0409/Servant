@@ -23,10 +23,9 @@ func MakeNote(title, body string) NoteObject {
 }
 
 type NoteUser struct {
-	lock        sync.Mutex
-	Notes       []NoteObject
-	NoteChannel chan NoteObject
-	Context     *context.Context
+	lock    sync.Mutex
+	Notes   []NoteObject
+	Context *context.Context
 }
 
 func MakeNoteUser(ctx *context.Context) *NoteUser {
@@ -34,9 +33,8 @@ func MakeNoteUser(ctx *context.Context) *NoteUser {
 	note2 := MakeNote("My seconds note", "This is my second note body")
 	note3 := MakeNote("My third note", "This is my third note body")
 	noteUser := NoteUser{
-		Notes:       []NoteObject{note1, note2, note3},
-		NoteChannel: make(chan NoteObject),
-		Context:     ctx,
+		Notes:   []NoteObject{note1, note2, note3},
+		Context: ctx,
 	}
 
 	return &noteUser
@@ -62,10 +60,6 @@ func (nu *NoteUser) GetNotes() []NoteObject {
 	nu.lock.Lock()
 	defer nu.lock.Unlock()
 	return nu.Notes
-}
-
-func (nu *NoteUser) Subscribe(handler func(note NoteObject)) {
-
 }
 
 // func (nu *NoteUser) updateNote(index int, title string, body string) {
